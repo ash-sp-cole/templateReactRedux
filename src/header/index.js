@@ -1,46 +1,44 @@
-import React, { Component } from 'react';
-import {Navbar, Nav, NavDropdown,Form, Button, FormControl} from 'react-bootstrap';
-import './header.css';
-
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
 
-class Header extends Component {
+export default class Header extends Component {
+  state = { activeItem: 'home' }
 
 
-    render() {
 
 
-        return (
-
-            <div>
-              <Navbar className="navbar transparent justify-content-center"  variant="light" expand="lg" style={{color:'white'}}>
-  <Navbar.Brand as={Link} to='/' >React-Bootstrap</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link as ={Link} to='/'>Home</Nav.Link>
-      <Nav.Link as ={Link} to='/search'>Search Api</Nav.Link>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item as={Link} to='/about'>About</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to='/about'>Another action</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to='/about'>Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form>
-  </Navbar.Collapse>
-</Navbar>
-            </div>
-
-        )
+  handleItemClick = (e, { name }) => {
+    
+  this.setState({ activeItem: name })
+  console.log("clicked", this.state.activeItem );
+  }
 
 
-    }
+  render() {
+    const { activeItem } = this.state
 
+    return (
+      <Menu pointing secondary vertical>
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+          as={Link} to='/'
+        />
+        <Menu.Item
+          name='about'
+          active={activeItem === 'about'}
+          onClick={this.handleItemClick}
+          as={Link} to='/about'
+        />
+        <Menu.Item
+          name='search'
+          active={activeItem === 'search'}
+          onClick={this.handleItemClick}
+          as={Link} to='/search'
+        />
+      </Menu>
+    )
+  }
 }
-
-export default Header;
