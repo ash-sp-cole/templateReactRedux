@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-
+import {Card, Icon} from 'semantic-ui-react';
 import axios from 'axios';
-import Display from '../cardSocial';
+import { ImageList } from '../cardSocial';
 
 class Search extends Component {
 
@@ -13,13 +13,21 @@ class Search extends Component {
   componentDidMount() {
 
     axios.all([
-      axios.get('https://jsonplaceholder.typicode.com/users'),
-      axios.get('https://jsonplaceholder.typicode.com/photos')
+      axios.get('https://jsonplaceholder.typicode.com/users', {
+        params: {
+          _limit: 10
+        }
+      }),
+      axios.get('https://jsonplaceholder.typicode.com/photos', {
+        params: {
+          _limit: 10
+        }
+      })
     ])
       .then(responseArr => {
-        const dataResponse = responseArr[0].data[1];
+        const dataResponse = responseArr[0].data;
 
-        const imageResponse = responseArr[1].data[1];
+        const imageResponse = responseArr[1].data;
 
 
         this.setState({
@@ -37,10 +45,14 @@ class Search extends Component {
   render() {
     return (
 
+
       <div>
+           
+        <ImageList imageData={this.state.image} userData={this.state.data} /> 
+     
 
-        <Display imageData={this.state.image} userData={this.state.data} />
 
+     
       </div>
 
     )
