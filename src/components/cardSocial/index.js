@@ -1,29 +1,64 @@
 import React from 'react';
-import {Card, Image, Icon} from 'semantic-ui-react';
+import { Card, Image, Popup, Icon, Button } from 'semantic-ui-react';
+import '../list.css';
+export const ImageList = (props) => {
+    console.log(props)
+    const userInfo = props.userData.map((title) => {
+        return (
 
- export const ImageList = (props) =>{
+            
+                    <div >
 
-        const singleImage = props.imageData.map((image)=> {
-            const userInfo = props.userData.map((user)=>{
-                return <div>{user.name}</div>
-            })
-            return (
-            <div>
-        <Card>
-            <Card.Header><h5>{userInfo}</h5></Card.Header>
-            <img src={image.url}/>
-        </Card>
-        </div>
-            )
-        })
-        
-       
-        console.log(singleImage)
-return <div> 
-    
+                        <Popup
+                            trigger={
+                                <Card>
+                                    <Image src={title.urlToImage} />
+                                    <Card.Content>
+                                        <Card.Header>{title.title}</Card.Header>
+                                        <Card.Description>
+                                           {title.description}
+          </Card.Description>
+          <Button animated href={title.url} target="_blank">
+      <Button.Content visible>View</Button.Content>
+      <Button.Content hidden>
+        <Icon name='arrow right' />
+      </Button.Content>
+    </Button>
+                                    </Card.Content>
+                                </Card>
+                            }
+                        >
+                            <Popup.Header>{title.source.name}</Popup.Header>
+                            <Popup.Content>
+                                <h5> {title.author} </h5> 
+                            </Popup.Content>
+                        </Popup>
+                    </div>
+          
 
-  {singleImage}
-  </div>
+
+
+
+
+
+
+
+        )
+    })
+
+    // const title = props.userData.map((user)=>{
+    //     return <div> title - {user.title}</div>
+
+    //   })
+    //   const image = props.userData.map((user)=>{
+    //       return <img src={user.urlToImage}/>
+    //   })
+
+    return <div className='image-list' >
+        {userInfo}
+    </div>
+
 }
+
 
 

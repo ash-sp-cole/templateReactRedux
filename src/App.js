@@ -17,25 +17,27 @@ const App = () =>{
 return(
 
 <BrowserRouter>
-<Grid.Row style={{height:'40vh'}}><div></div></Grid.Row>
+ 
 
 
-<Grid columns={2}style={{margin:'auto'}}> 
-    <Grid.Column style={{width:'30vw'}}>
+<Grid style={{margin:'auto'}}> 
+<Grid.Row style={{height:'10vh'}}><div><h1 style={{fontFamily: 'indie Flower', fontSize: '3.5em', paddingBottom:'20px', paddingLeft:'5vw', paddingRight:'20vw'}}><center>News Api</center> </h1>  </div></Grid.Row>
+  <Grid.Row> 
     <Header/>
-    </Grid.Column>
-    
-
-
-
-
-<div style={{width:'70vw', paddingLeft:'300px'}}>
-<Grid.Column>
+ 
+<Grid.Column style={{width:'80vw'}}>
 <Route path ='/' exact component={Home}/>
 <Route path ='/about' component ={About}/>
 <Route path ='/search' component ={Search}/>
 </Grid.Column>
-</div>
+
+</Grid.Row> 
+ 
+
+ 
+
+
+
 <Grid.Row style={{height:'20vh'}}><div></div></Grid.Row>
     
   </Grid>

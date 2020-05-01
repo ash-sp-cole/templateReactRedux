@@ -34,10 +34,13 @@ export default class Header extends Component {
         />
         <Menu.Item
           name='search'
+          
           active={activeItem === 'search'}
           onClick={this.handleItemClick}
           as={Link} to='/search'
+          
         />
+    
       </Menu>
     )
   }
