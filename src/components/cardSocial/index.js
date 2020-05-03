@@ -1,14 +1,16 @@
 import React from 'react';
-import { Card, Image, Popup, Icon, Button } from 'semantic-ui-react';
+import { Card, Image, Popup, Icon,Row, Button } from 'semantic-ui-react';
 import '../list.css';
 export const ImageList = (props) => {
     console.log(props)
     const userInfo = props.userData.map((title) => {
+      
+
         return (
 
             
                     <div >
-
+                          
                         <Popup
                             trigger={
                                 <Card>
@@ -55,6 +57,7 @@ export const ImageList = (props) => {
     //   })
 
     return <div className='image-list' >
+         
         {userInfo}
     </div>
 

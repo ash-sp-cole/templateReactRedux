@@ -21,13 +21,13 @@ export default class Header extends Component {
     return (
       <Menu pointing secondary vertical>
         <Menu.Item
-          name='home'
+          name='News'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
           as={Link} to='/'
         />
         <Menu.Item
-          name='about'
+          name='Weather'
           active={activeItem === 'about'}
           onClick={this.handleItemClick}
           as={Link} to='/about'
