@@ -21,7 +21,7 @@ return(
 
 
 <Grid style={{margin:'auto'}}> 
-<Grid.Row style={{height:'10vh'}}><div><h1 style={{  fontFamily: 'indie Flower', fontSize: '3.5em', paddingBottom:'20px', paddingLeft:'5vw', paddingRight:'20vw'}}><center>News Api</center> </h1>  </div></Grid.Row>
+<Grid.Row style={{height:'10vh'}}><div><h1 style={{ color:'#e1b382', fontFamily: 'indie Flower', fontSize: '4.5em', paddingBottom:'20px', paddingLeft:'5vw', paddingRight:'20vw'}}><center>Simplify - Api</center> </h1>  </div></Grid.Row>
   <Grid.Row> 
     <Header/>
  

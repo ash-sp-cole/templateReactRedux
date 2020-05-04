@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Grid, Segment, Placeholder,Divider, Search, Icon, Header } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment, Placeholder,Dropdown, Divider, Search, Icon, Header,  Input } from 'semantic-ui-react';
 import axios from 'axios';
 import { ImageList } from '../cardSocial';
 
@@ -19,10 +19,11 @@ class SearchNews extends Component {
     image: [],
     location: '',
     render: false,
-    searchQuery: ''
+    searchQuery: '',
+   
 
   }
-  handleChange = (e, { value }) => {
+  handleChange =  (e, { value }) => {
     this.setState({
       location: value,
     })
@@ -33,10 +34,15 @@ class SearchNews extends Component {
 
   clearSearch = () => {
     this.setState({
-      render:false
+      render: false
     })
   }
-
+  handleKeyPress = (event) => {
+    console.log('keyPRress')
+    if(event.key === 'Enter'){
+     this.callApi()
+    }
+  }
   callApi = () => {
 
 
@@ -49,22 +55,18 @@ class SearchNews extends Component {
             _limit: 10
           }
         }),
-        // axios.get('https://jsonplaceholder.typicode.com/photos', {
-        //   params: {
-        //     _limit: 10
-        // //   }
-        // })
+       
       ])
         .then(responseArr => {
           const dataResponse = responseArr[0].data.articles;
 
-          // const imageResponse = responseArr[1].data;
+         ;
 
 
           this.setState({
             data: dataResponse,
             render: true
-            // image: imageResponse
+           
 
           })
           console.log('api call', this.state.data)
@@ -87,13 +89,13 @@ class SearchNews extends Component {
         .then(responseArr => {
           const dataResponse = responseArr[0].data.articles;
 
-          // const imageResponse = responseArr[1].data;
+          
 
 
           this.setState({
             data: dataResponse,
             render: true
-            // image: imageResponse
+          
 
           })
           console.log('api call', this.state.data)
@@ -117,125 +119,136 @@ class SearchNews extends Component {
         <div>
           <center style={{ paddingBottom: '20px' }}>
             <Button icon onClick={this.clearSearch}>
-              <Icon name='delete' />
+              <Icon name='delete'/> clear
             </Button>
           </center>
 
-          <ImageList userData={this.state.data} /> 
+          <ImageList userData={this.state.data} />
 
-      </div>
+        </div>
     }
     if (search === false) {
       display =
-        <div>
+        <div> 
           <Grid columns={3} stackable>
-    <Grid.Column>
-      <Segment raised>
-        <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
-        </Placeholder>
-      </Segment>
-    </Grid.Column>
+            <Grid.Column >
+              <Segment raised>
+                <Placeholder  style={{backgroundColor:'#e1b382'}} >
+                  <Placeholder.Header image>
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                  </Placeholder.Header>
+                  <Placeholder.Paragraph>
+                    <Placeholder.Line length='medium' />
+                    <Placeholder.Line length='short' />
+                  </Placeholder.Paragraph>
+                </Placeholder>
+              </Segment>
+            </Grid.Column>
 
-    <Grid.Column>
-      <Segment raised>
-        <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
-        </Placeholder>
-      </Segment>
-    </Grid.Column>
+            <Grid.Column>
+              <Segment raised>
+                <Placeholder style={{backgroundColor:'#c89666'}}>
+                <Placeholder.Header image >
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                  </Placeholder.Header>
+                  <Placeholder.Paragraph>
+                    <Placeholder.Line length='medium' />
+                    <Placeholder.Line length='short' />
+                  </Placeholder.Paragraph>
+                </Placeholder>
+              </Segment>
+            </Grid.Column>
 
-    <Grid.Column>
-      <Segment raised>
-        <Placeholder>
-          <Placeholder.Header image>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length='medium' />
-            <Placeholder.Line length='short' />
-          </Placeholder.Paragraph>
-        </Placeholder>
-      </Segment>
-    </Grid.Column>
-  </Grid>
+            <Grid.Column>
+              <Segment raised>
+                <Placeholder style={{backgroundColor:'#e1b382'}}>
+                <Placeholder.Header image >
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                  </Placeholder.Header>
+                  <Placeholder.Paragraph>
+                    <Placeholder.Line length='medium' />
+                    <Placeholder.Line length='short' />
+                  </Placeholder.Paragraph>
+                </Placeholder>
+              </Segment>
+            </Grid.Column>
+          </Grid>
 
-      </div>
+        </div>
     }
     return (
 
-      <div>
+      <div  >
 
-        {/* <ImageList userData={this.state.data} />  */}
-        <Header as='h1' icon textAlign='center'>
-          
-          <Icon name='newspaper outline' circular />
-          <Header.Content>News</Header.Content>
-     
+        <Header as='h1' icon textAlign='center'style={{backgroundColor:"#e1b382",borderRadius: '25px'}} >
 
-          <Form onSubmit={this.callApi} style={{ paddingBottom: '10px' }}>
-            <br></br>
-            <Form.Button >
-
-              <Button animated>
-                <Button.Content visible>Search... </Button.Content>
-                <Button.Content hidden size='mini'>
-                 News
-                </Button.Content>
-              </Button>
-
-            </Form.Button>
-            <br />
-     
-            <Segment>
-            <Grid columns={2} stackable textAlign='center'>
-              <Divider vertical>Or</Divider>
-        
-              <Grid.Row verticalAlign='middle'>
-                <Grid.Column>
-                  <Header icon>
-                    <Icon name='search' />
-                    Leave blank for top results ...
-                  </Header>
-        
-                  <Search id="searchKey" placeholder='Search countries...' />
-                </Grid.Column>
-        
-                <Grid.Column>
-                  <Header icon>
-                    <Icon name='world' />
-                    Add New Country
-                  </Header>
-                 
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-            </Segment>
-            {/* <Form.Group widths='equal'> */}
-              {/* <Form.Input  fluid label='Key Words' placeholder='Leave blank for top results ...' id="searchKey" /> */}
-
-           
-            {/* </Form.Group> */}
-
-
-
-          </Form>
+          <Icon name='newspaper outline' circular style={{color:"#12343b", backgroundColor:'#c89666'}} />
+          <Header.Content style={{backgroundColor:'#c89666', fontSize:'1.5em',fontFamily: 'indie Flower'}}>News</Header.Content>
         </Header>
+
+        <Segment style={{backgroundColor:'#c89666' ,color:'#c89666', borderRadius: '25px'}}>
+          <Grid columns={2} stackable textAlign='center' style={{ borderRadius: '25px',backgroundColor:'#e1b382'}}>
+            <Divider vertical style={{height:'50px'}}>Or</Divider>
+
+            <Grid.Row verticalAlign='middle' >
+              <Grid.Column>
+                <Header icon style={{margin:'auto', paddingTop:'5%'}}>
+                <Icon name="search"/>
+        Select a keyword to search for  ...
+      </Header>
+
+                <br></br>
+ <Input  id="searchKey"  onKeyPress={this.handleKeyPress} placeholder='Search  ...'  icon={<Icon name='delete' link  onClick={() => window.location.reload(false)}/>} />
+            
+              </Grid.Column>
+             
+              <Grid.Column >
+                <Header icon style={{margin:'auto', paddingTop:'5%'}}>
+                  <Icon name='world'/>
+                  <h4> View Top Ten </h4>
+  
+ 
+       <Form.Select
+            fluid
+           
+            options={options}
+            placeholder='select location'
+            clearable
+            onChange={this.handleChange} 
+            onKeyPress={this.handleKeyPress}
+          />
+       </Header>
+       
+
+              </Grid.Column>
+              
+            </Grid.Row>
+         
+            <Form onSubmit={this.callApi}   style={{ paddingBottom: '10px' }} >
+              
+              <Form.Button style={{backgroundColor:'#2d545e', borderRadius: '25px'}} >
+
+                <Button style={{backgroundColor: '#e1b382'}} >
+                Search...
+             
+                </Button>
+
+              </Form.Button>
+
+            </Form>
+            </Grid>
+        </Segment>
+
+
+
+
+   
+
+
+
 
         {display}
 
@@ -248,3 +261,4 @@ class SearchNews extends Component {
 
 }
 export default SearchNews;
+
