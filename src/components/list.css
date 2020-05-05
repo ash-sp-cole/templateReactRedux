@@ -1,5 +1,6 @@
 .image-list{
     background-color: #c89666;
+    
     display: grid;
     grid-template-columns:  repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 10px;
@@ -17,3 +18,4 @@ widows: 250px;
 /* body {
     background-color:#2d545e
 } */
+

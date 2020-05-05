@@ -1,32 +1,42 @@
 import React from 'react';
 
-import { Card, Image, Icon} from 'semantic-ui-react';
+import { Card, Image,Popup, Button, Icon} from 'semantic-ui-react';
 
 const Display = (props) =>{
-  console.log( 'temp ',props.weatherData.temp);
+
    return(
 
 
 <div> 
-
-<Card>
-    <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
-    <Card.Content>
-      <Card.Header>{props.weatherData.name}</Card.Header>
-      <Card.Meta>
-        <span className='date'>{props.temp} </span>
-      </Card.Meta>
-      <Card.Description>
-        {props.mainData.description}
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
+<div >
+                          
+                          <Popup
+                              trigger={
+                                  <Card>
+                                      <Image />
+                                      <Card.Content>
+                                          <Card.Header>{}</Card.Header>
+                                          <Card.Description>
+                                          {props.hourOneTemp}
+            </Card.Description>
+            <Button animated  target="_blank">
+        <Button.Content visible>View</Button.Content>
+        <Button.Content hidden>
+          <Icon name='arrow right' />
+        </Button.Content>
+      </Button>
+                                      </Card.Content>
+                                  </Card>
+                              }
+                          >
+                              <Popup.Header></Popup.Header>
+                              <Popup.Content>
+                                  <h5> </h5> 
+                              </Popup.Content>
+                          </Popup>
+                      </div>
+            
+  
 
 
 </div>

@@ -11,7 +11,7 @@ export default class Header extends Component {
   handleItemClick = (e, { name }) => {
     
   this.setState({ activeItem: name })
-  console.log("clicked", this.state.activeItem );
+ 
   }
 
 

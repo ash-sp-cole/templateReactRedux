@@ -1,0 +1,7 @@
+.mainNewsWindow{
+    opacity:0.8;
+}
+
+.mainNewsWindow:hover {
+    opacity: 1;
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Button, Grid, Segment, Placeholder,Dropdown, Divider, Search, Icon, Header,  Input } from 'semantic-ui-react';
+import { Form, Button, Grid, Segment, Placeholder, Popup, Divider,Icon, Header, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import { ImageList } from '../cardSocial';
-
+import './news.css';
 const options = [
   { key: 'us', text: 'United States', value: 'US' },
   { key: 'gb', text: 'United Kingdom', value: 'GB' },
@@ -20,14 +20,14 @@ class SearchNews extends Component {
     location: '',
     render: false,
     searchQuery: '',
-   
+
 
   }
-  handleChange =  (e, { value }) => {
+  handleChange = (e, { value }) => {
     this.setState({
       location: value,
     })
-    console.log(this.state.location, 'handle change')
+   
 
 
   }
@@ -38,9 +38,9 @@ class SearchNews extends Component {
     })
   }
   handleKeyPress = (event) => {
-    console.log('keyPRress')
-    if(event.key === 'Enter'){
-     this.callApi()
+    
+    if (event.key === 'Enter') {
+      this.callApi()
     }
   }
   callApi = () => {
@@ -55,22 +55,21 @@ class SearchNews extends Component {
             _limit: 10
           }
         }),
-       
+
       ])
         .then(responseArr => {
           const dataResponse = responseArr[0].data.articles;
 
-         ;
+          ;
 
 
           this.setState({
             data: dataResponse,
             render: true
-           
+
 
           })
-          console.log('api call', this.state.data)
-          console.log(this.state.render)
+          
         })
 
 
@@ -89,17 +88,16 @@ class SearchNews extends Component {
         .then(responseArr => {
           const dataResponse = responseArr[0].data.articles;
 
-          
+
 
 
           this.setState({
             data: dataResponse,
             render: true
-          
+
 
           })
-          console.log('api call', this.state.data)
-          console.log(this.state.render)
+         
         })
 
 
@@ -119,7 +117,7 @@ class SearchNews extends Component {
         <div>
           <center style={{ paddingBottom: '20px' }}>
             <Button icon onClick={this.clearSearch}>
-              <Icon name='delete'/> clear
+              <Icon name='delete' /> clear
             </Button>
           </center>
 
@@ -129,123 +127,129 @@ class SearchNews extends Component {
     }
     if (search === false) {
       display =
-        <div> 
-          <Grid columns={3} stackable>
-            <Grid.Column >
-              <Segment raised>
-                <Placeholder  style={{backgroundColor:'#e1b382'}} >
-                  <Placeholder.Header image>
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                  </Placeholder.Header>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line length='medium' />
-                    <Placeholder.Line length='short' />
-                  </Placeholder.Paragraph>
-                </Placeholder>
-              </Segment>
-            </Grid.Column>
+        <Popup style={{ borderRadius: '25px' }} content='Silly Sausage, make sure to search first ...' trigger={
+          <div>
+            <Grid columns={3} stackable>
+              <Grid.Column >
+                <Segment raised>
+                  <Placeholder style={{ backgroundColor: '#e1b382' }} >
+                    <Placeholder.Header image>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line length='medium' />
+                      <Placeholder.Line length='short' />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                </Segment>
+              </Grid.Column>
 
-            <Grid.Column>
-              <Segment raised>
-                <Placeholder style={{backgroundColor:'#c89666'}}>
-                <Placeholder.Header image >
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                  </Placeholder.Header>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line length='medium' />
-                    <Placeholder.Line length='short' />
-                  </Placeholder.Paragraph>
-                </Placeholder>
-              </Segment>
-            </Grid.Column>
+              <Grid.Column>
+                <Segment raised>
+                  <Placeholder style={{ backgroundColor: '#c89666' }}>
+                    <Placeholder.Header image >
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line length='medium' />
+                      <Placeholder.Line length='short' />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                </Segment>
+              </Grid.Column>
 
-            <Grid.Column>
-              <Segment raised>
-                <Placeholder style={{backgroundColor:'#e1b382'}}>
-                <Placeholder.Header image >
-                    <Placeholder.Line />
-                    <Placeholder.Line />
-                  </Placeholder.Header>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line length='medium' />
-                    <Placeholder.Line length='short' />
-                  </Placeholder.Paragraph>
-                </Placeholder>
-              </Segment>
-            </Grid.Column>
-          </Grid>
+              <Grid.Column>
+                <Segment raised>
+                  <Placeholder style={{ backgroundColor: '#e1b382' }}>
+                    <Placeholder.Header image >
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line length='medium' />
+                      <Placeholder.Line length='short' />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                </Segment>
+              </Grid.Column>
+            </Grid>
 
-        </div>
+          </div>
+        } />
     }
     return (
 
       <div  >
 
-        <Header as='h1' icon textAlign='center'style={{backgroundColor:"#e1b382",borderRadius: '25px'}} >
-
-          <Icon name='newspaper outline' circular style={{color:"#12343b", backgroundColor:'#c89666'}} />
-          <Header.Content style={{backgroundColor:'#c89666', fontSize:'1.5em',fontFamily: 'indie Flower'}}>News</Header.Content>
+        <Header as='h1' icon textAlign='center' style={{ backgroundColor: "#e1b382", borderRadius: '25px', opacity:'0.8' }} >
+          <Popup style={{ borderRadius: '25px' }} content='Yep, real news , real fast ' trigger={
+            <Icon name='newspaper outline' circular style={{ color: "#12343b", backgroundColor: '#c89666' }} />
+          } />
+          <Header.Content style={{  backgroundColor: '#c89666', fontSize: '1.5em', fontFamily: 'indie Flower' }}>News</Header.Content>
         </Header>
 
-        <Segment style={{backgroundColor:'#c89666' ,color:'#c89666', borderRadius: '25px'}}>
-          <Grid columns={2} stackable textAlign='center' style={{ borderRadius: '25px',backgroundColor:'#e1b382'}}>
-            <Divider vertical style={{height:'50px'}}>Or</Divider>
+        <Segment style={{ backgroundColor: '#c89666', color: '#c89666', borderRadius: '25px'}} className="mainNewsWindow">
+          <Grid columns={2} stackable textAlign='center' style={{ borderRadius: '25px', backgroundColor: '#e1b382' }}>
+            <Divider vertical style={{ height: '50px' }}>Or</Divider>
 
             <Grid.Row verticalAlign='middle' >
               <Grid.Column>
-                <Header icon style={{margin:'auto', paddingTop:'5%'}}>
-                <Icon name="search"/>
+                <Header icon style={{ margin: 'auto', paddingTop: '5%' }}>
+                  <Icon name="search" />
         Select a keyword to search for  ...
       </Header>
 
                 <br></br>
- <Input  id="searchKey"  onKeyPress={this.handleKeyPress} placeholder='Search  ...'  icon={<Icon name='delete' link  onClick={() => window.location.reload(false)}/>} />
-            
+                <Input id="searchKey" onKeyPress={this.handleKeyPress} placeholder='Search  ...' icon={<Icon name='delete' link onClick={() => window.location.reload(false)} />} />
+
               </Grid.Column>
-             
+
               <Grid.Column >
-                <Header icon style={{margin:'auto', paddingTop:'5%'}}>
-                  <Icon name='world'/>
+                <Header icon style={{ margin: 'auto', paddingTop: '5%' }}>
+                  <Icon name='world' />
                   <h4> View Top Ten </h4>
-  
- 
-       <Form.Select
-            fluid
-           
-            options={options}
-            placeholder='select location'
-            clearable
-            onChange={this.handleChange} 
-            onKeyPress={this.handleKeyPress}
-          />
-       </Header>
-       
+
+
+                  <Form.Select
+                    fluid
+
+                    options={options}
+                    placeholder='select location'
+                    clearable
+                    onChange={this.handleChange}
+                    onKeyPress={this.handleKeyPress}
+                  />
+                </Header>
+
 
               </Grid.Column>
-              
+
             </Grid.Row>
-         
-            <Form onSubmit={this.callApi}   style={{ paddingBottom: '10px' }} >
-              
-              <Form.Button style={{backgroundColor:'#2d545e', borderRadius: '25px'}} >
 
-                <Button style={{backgroundColor: '#e1b382'}} >
-                Search...
-             
+            <Form onSubmit={this.callApi} style={{ paddingBottom: '10px' }} >
+
+              <Form.Button style={{ backgroundColor: '#2d545e', borderRadius: '25px' }} >
+
+
+                <Button animated style={{backgroundColor:'white'}}>
+                  <Button.Content visible style={{color: 'black'}}>Search</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='arrow right' />
+                  </Button.Content>
                 </Button>
-
+              
               </Form.Button>
 
             </Form>
-            </Grid>
+          </Grid>
         </Segment>
 
 
 
 
-   
+
 
 
 
