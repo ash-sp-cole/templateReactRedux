@@ -10,6 +10,7 @@ class About extends Component {
         data: [],
         hourDataArrayONE :[],
         hourDataArrayONETemp:'',
+        hourDataArrayONEDescription:'',
         hourDataArrayTWO :[],
         hourDataArrayTHREE :[],
         dataCityName:'',
@@ -18,6 +19,13 @@ class About extends Component {
         dataTemp:'',
         temp: '',
         searched: false
+    }
+
+
+    handleKeyPress = (event) =>{
+        if (event.key === "Enter"){
+            this.callApi()
+        }
     }
 
     callApi = () => {
@@ -44,6 +52,7 @@ class About extends Component {
                      hourDataArrayTWO: hourTwo,
                      hourDataArrayTHREE: hourThree,
                      hourDataArrayONETemp: parseFloat(hourOne.main.temp -273).toFixed(2),
+                     hourDataArrayONEDescription: hourOne.weather[0].description,
                      searched:true
                 })
              
@@ -60,15 +69,17 @@ class About extends Component {
         }
 
     }
- 
-
+    
+    
 
     render() {
-        console.log( 'state render hour one ->', this.state.hourDataArrayONETemp); 
+        console.log( 'state render hour one ->', this.state.hourDataArrayONE); 
         let showWeather
         const searched = this.state.searched;
         if (searched === true) { showWeather = <Display 
             hourOneTemp={this.state.hourDataArrayONETemp}
+            hourOneDescription = {this.state.hourDataArrayONEDescription}
+            locationName = {this.state.dataCityName}
             
             
             /> }
@@ -90,7 +101,7 @@ class About extends Component {
 
 
                     <Form>
-                        <Input focus placeholder='Enter here...' id="searchLocation" icon={<Icon name='delete' link onClick={() => window.location.reload(false)} />}/>
+                        <Input focus placeholder='Enter here...' id="searchLocation" icon={<Icon name='delete' link onClick={() => window.location.reload(false)} />} onKeyPress={this.handleKeyPress} />
 
                     </Form>
                     <Divider horizontal>Enter City or Zip Code</Divider>

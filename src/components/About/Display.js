@@ -15,9 +15,12 @@ const Display = (props) =>{
                                   <Card>
                                       <Image />
                                       <Card.Content>
-                                          <Card.Header>{}</Card.Header>
+                                          <Card.Header>{props.locationName}</Card.Header>
                                           <Card.Description>
-                                          {props.hourOneTemp}
+                                          {props.hourOneTemp} 'C
+                                          <br></br>
+                                            {props.hourOneDescription}
+
             </Card.Description>
             <Button animated  target="_blank">
         <Button.Content visible>View</Button.Content>

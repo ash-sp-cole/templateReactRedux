@@ -28,7 +28,7 @@ return(
 <Grid.Column style={{width:'80vw'}}>
 <Route path ='/' exact component={Search}/>
 <Route path ='/about' component ={About}/>
-<Route path ='/search' component ={Search}/>
+<Route path ='/search' component ={Home}/>
 </Grid.Column>
 
 </Grid.Row> 
