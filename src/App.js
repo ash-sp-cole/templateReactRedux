@@ -18,8 +18,6 @@ return(
 
 <BrowserRouter>
  
-
-
 <Grid style={{margin:'auto'}}> 
 <Grid.Row style={{height:'10vh'}}><div><h1 style={{ color:'#e1b382', fontFamily: 'indie Flower', fontSize: '4.5em', paddingBottom:'20px', paddingLeft:'5vw', paddingRight:'20vw'}}><center>Simplify - A p i</center> </h1>  </div></Grid.Row>
   <Grid.Row> 
